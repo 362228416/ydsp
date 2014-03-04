@@ -1,0 +1,40 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources
+    <mvc:resources location="/" order="1" mapping="/resources/**"/>
+    -->
+    <!-- Allows for mapping the DispatcherServlet to "/" by forwarding static resource
+    requests to the container's default Servlet
+    <mvc:default-servlet-handler />
+    -->
+    <context:component-scan base-package="com.ydsp.web"/>
+
+    <!--<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">-->
+        <!--<property name="messageConverters">-->
+            <!--<util:list id="beanList">-->
+                <!--<ref bean="jackson2HttpMessageConverter"/>-->
+                <!--<ref bean="stringHttpMessageConverter"/>-->
+            <!--</util:list>-->
+        <!--</property>-->
+    <!--</bean>-->
+
+    <!--<bean id="stringHttpMessageConverter"-->
+          <!--class="org.springframework.http.converter.StringHttpMessageConverter"/>-->
+
+    <!--<bean id="jackson2HttpMessageConverter"-->
+          <!--class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>-->
+
+    <!--<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
+        <!--<property name="prefix" value="/WEB-INF/pages/"/>-->
+        <!--<property name="suffix" value=".jsp"/>-->
+    <!--</bean>-->
+
+    <bean class="com.ydsp.config.YdspConfig"/>
+
+</beans>
