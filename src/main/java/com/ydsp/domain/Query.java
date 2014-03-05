@@ -59,6 +59,18 @@ public class Query {
         this.lastDate = lastDate;
     }
 
+    public Query() {
+    }
+
+    public Query(String keyword) {
+        this.keyword = keyword;
+    }
+
+    public Query(String keyword, Date createDate) {
+        this.keyword = keyword;
+        this.createDate = createDate;
+    }
+
     @Override
     public String toString() {
         return "Search{" +

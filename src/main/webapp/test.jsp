@@ -4,27 +4,11 @@
     <title>test page</title>
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
     <script>
-        //        $.getJSON('users', function(data){
-        //            console.log(data);
-        //        })
-
-        $.getJSON("http://query.yahooapis.com/v1/public/yql", {
-            q: "select * from json where url=\"http://m.weather.com.cn/data/101010100.html\"",
-            format: "json"
-        }, function (data) {
-            var $content = $("#content")
-            if (data.query.results) {
-                $content.text(JSON.stringify(data.query.results));
-            } else {
-                $content.text('no such code: ' + code);
-            }
-        })
-
-
-
+        // submit keyword
+//        $.getJSON('http://localhost:8080/q.jsp?k=酒店&cb=?')
     </script>
 </head>
 <body>
-
+    <div id="content"></div>
 </body>
 </html>
