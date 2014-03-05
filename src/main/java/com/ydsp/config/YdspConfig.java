@@ -3,10 +3,14 @@ package com.ydsp.config;
 import com.mongodb.Mongo;
 import com.ydsp.event.QueryRepositoryEventListener;
 import com.ydsp.event.UserRepositoryEventListener;
+import org.cloudfoundry.runtime.env.CloudEnvironment;
+import org.cloudfoundry.runtime.env.MongoServiceInfo;
+import org.cloudfoundry.runtime.service.document.MongoServiceCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
@@ -37,8 +41,28 @@ public class YdspConfig {
     }
 
     @Bean
+    public MongoDbFactory mongoDbFactory() throws Exception {
+        try {
+            CloudEnvironment environment = new CloudEnvironment();
+            MongoDbFactory mongo = new MongoServiceCreator().createService(environment.getServiceInfo("my-mongo", MongoServiceInfo.class));
+            return mongo;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    @Bean
     public MongoTemplate mongoTemplate() throws Exception {
-        return new MongoTemplate(mongo(), "db");
+        MongoTemplate mongoTemplate;
+        MongoDbFactory mongoDbFactory = mongoDbFactory();
+        if (mongoDbFactory == null) {
+            // local
+            mongoTemplate = new MongoTemplate(mongo(), "db");
+        } else {
+            // cloud foundry
+            mongoTemplate = new MongoTemplate(mongoDbFactory);
+        }
+        return mongoTemplate;
     }
 
     @Bean
