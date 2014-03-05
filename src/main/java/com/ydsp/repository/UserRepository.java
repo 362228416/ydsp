@@ -12,7 +12,7 @@ import java.util.List;
  * @author: john
  * @version: 1.0 2014-02-28 下午11:06
  */
-@RepositoryRestResource
+@RepositoryRestResource(path = "user", collectionResourceRel = "user")
 public interface UserRepository extends MongoRepository<User, String> {
 
     List<User> findByNameLike(@Param("name") String name);

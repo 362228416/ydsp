@@ -35,14 +35,15 @@ public class UserRepositoryTest {
     @Test
     public void testFindAll() throws Exception {
         List<User> list = userRepository.findAll();
-        System.out.println(list);
         Assert.notNull(list);
     }
 
     @Test
     public void testSave() throws Exception {
+        userRepository.deleteAll();
         userRepository.save(new User("1", "john"));
         userRepository.save(new User("2", "mary"));
+        System.out.println(userRepository.findAll());
     }
 
 

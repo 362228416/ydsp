@@ -1,6 +1,7 @@
 package com.ydsp.config;
 
 import com.mongodb.Mongo;
+import com.ydsp.event.QueryRepositoryEventListener;
 import com.ydsp.event.UserRepositoryEventListener;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,7 +22,7 @@ import org.springframework.web.client.RestTemplate;
 @EnableSpringDataWebSupport
 @EnableTransactionManagement
 @EnableMongoRepositories(basePackages = {"com.ydsp.repository"})
-@ComponentScan({"com.ydsp.event", "com.ydsp.util"})
+@ComponentScan({"com.ydsp.util","com.ydsp.event"})
 @Import(RepositoryRestMvcConfiguration.class)
 public class YdspConfig {
 
@@ -43,6 +44,11 @@ public class YdspConfig {
     @Bean
     public UserRepositoryEventListener userRepositoryEventListener() {
         return new UserRepositoryEventListener();
+    }
+
+    @Bean
+    public QueryRepositoryEventListener searchRepositoryEventListener() {
+        return new QueryRepositoryEventListener();
     }
 
 }

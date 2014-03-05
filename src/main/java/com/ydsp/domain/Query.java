@@ -1,27 +1,31 @@
 package com.ydsp.domain;
 
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author: john
- * @version: 1.0 2014-02-28 下午11:07
+ * @version: 1.0 2014-03-05 上午10:04
  */
 @Document
-public class User implements Serializable{
+public class Query {
 
     @Id
-    String id;
+    private String id;
 
     @Indexed
-    String name;
+    private String keyword;
 
-    Date createDate;
+    @CreatedDate
+    private Date createDate;
+
+    @LastModifiedDate
+    private Date lastDate;
 
     public String getId() {
         return id;
@@ -31,20 +35,12 @@ public class User implements Serializable{
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getKeyword() {
+        return keyword;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public User(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public User() {
+    public void setKeyword(String keyword) {
+        this.keyword = keyword;
     }
 
     public Date getCreateDate() {
@@ -55,12 +51,21 @@ public class User implements Serializable{
         this.createDate = createDate;
     }
 
+    public Date getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(Date lastDate) {
+        this.lastDate = lastDate;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Search{" +
                 "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+                ", keyword='" + keyword + '\'' +
                 ", createDate=" + createDate +
+                ", lastDate=" + lastDate +
                 '}';
     }
 }
