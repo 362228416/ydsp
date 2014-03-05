@@ -5,7 +5,7 @@
     <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
     <script>
         // submit keyword
-//        $.getJSON('http://localhost:8080/q.jsp?k=酒店&cb=?')
+//        $.getJSON('http://ydsp.cfapps.io/q.jsp?k=喜来登&cb=?')
     </script>
 </head>
 <body>
